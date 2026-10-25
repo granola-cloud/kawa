@@ -5,7 +5,7 @@ let package = Package(
   name: "Kawa",
   platforms: [.macOS(.v14)],
   dependencies: [
-    .package(url: "https://github.com/sindresorhus/KeyboardShortcuts", from: "1.17.0"),
+    .package(url: "https://github.com/sindresorhus/KeyboardShortcuts", from: "3.1.0"),
   ],
   targets: [
     .executableTarget(
