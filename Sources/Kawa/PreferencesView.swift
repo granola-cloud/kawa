@@ -3,7 +3,8 @@ import SwiftUI
 
 struct PreferencesView: View {
   @ObservedObject var store: InputSourceStore
-  @State private var showsNotification = PermanentStorage.showsNotification
+  @State private var showsIndicator = PermanentStorage.showsIndicator
+  @State private var launchesAtLogin = LaunchAtLogin.isEnabled
 
   var body: some View {
     VStack(spacing: 0) {
@@ -23,14 +24,20 @@ struct PreferencesView: View {
 
       Divider()
 
-      HStack {
-        Toggle("Show notification on switch", isOn: $showsNotification)
-          .onChange(of: showsNotification) { _, enabled in
-            PermanentStorage.showsNotification = enabled
-            if enabled {
-              Notifier.requestAuthorization { _ in }
+      HStack(alignment: .bottom) {
+        VStack(alignment: .leading, spacing: 6) {
+          Toggle("Show indicator on switch", isOn: $showsIndicator)
+            .onChange(of: showsIndicator) { _, enabled in
+              PermanentStorage.showsIndicator = enabled
             }
-          }
+          Toggle("Launch at login", isOn: Binding(
+            get: { launchesAtLogin },
+            set: { enabled in
+              LaunchAtLogin.set(enabled)
+              launchesAtLogin = LaunchAtLogin.isEnabled
+            }
+          ))
+        }
         Spacer()
         Button("Quit Kawa") {
           NSApplication.shared.terminate(nil)
@@ -39,5 +46,9 @@ struct PreferencesView: View {
       .padding(12)
     }
     .frame(minWidth: 420, minHeight: 280)
+    // The login item can also be toggled from System Settings.
+    .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
+      launchesAtLogin = LaunchAtLogin.isEnabled
+    }
   }
 }

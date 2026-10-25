@@ -6,7 +6,8 @@
 * Replace the Xcode project and storyboard with a Swift package and SwiftUI preferences
 * Register shortcuts at launch instead of when the preferences table renders
 * Pick up input sources added or removed while Kawa is running
-* Replace deprecated NSUserNotification with UserNotifications
+* Replace notifications with an on-screen indicator on switch
+* Add a launch at login option
 * Avoid crashes on input sources with missing properties
 
 ## 1.1.0 (10 Nov 2017)

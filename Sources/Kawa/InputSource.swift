@@ -73,8 +73,8 @@ final class InputSourceStore: ObservableObject {
       guard let current = self?.sources.first(where: { $0.id == source.id }) else { return }
       current.select()
 
-      if PermanentStorage.showsNotification {
-        Notifier.show(current.name, icon: current.icon)
+      if PermanentStorage.showsIndicator {
+        SwitchIndicator.shared.show(current.name, icon: current.icon)
       }
     }
   }

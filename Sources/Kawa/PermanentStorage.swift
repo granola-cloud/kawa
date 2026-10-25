@@ -2,7 +2,8 @@ import Foundation
 
 enum PermanentStorage {
   private enum StorageKey: String {
-    case showsNotification = "show-notification"
+    // Key kept from 1.x, when the indicator was a system notification.
+    case showsIndicator = "show-notification"
     case launchedForTheFirstTime = "launched-for-the-first-time"
     case migratedMASShortcuts = "migrated-mas-shortcuts"
   }
@@ -15,9 +16,9 @@ enum PermanentStorage {
     UserDefaults.standard.set(value, forKey: key.rawValue)
   }
 
-  static var showsNotification: Bool {
-    get { object(forKey: .showsNotification, withDefault: false) }
-    set { set(newValue, forKey: .showsNotification) }
+  static var showsIndicator: Bool {
+    get { object(forKey: .showsIndicator, withDefault: false) }
+    set { set(newValue, forKey: .showsIndicator) }
   }
 
   static var launchedForTheFirstTime: Bool {

@@ -51,6 +51,9 @@ to sign with a Developer ID instead.
 
 Shortcuts saved by Kawa 1.x are migrated automatically on first launch.
 
+`System Events` keystrokes from AppleScript don't trigger the global
+shortcuts; to test them without a keyboard, post a `CGEvent` to `.cghidEventTap`.
+
 ## License
 
 Kawa is released under the [MIT License](LICENSE).
