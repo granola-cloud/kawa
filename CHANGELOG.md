@@ -1,4 +1,4 @@
-## 2.0.0 (unreleased)
+## 2.0.0 (25 Oct 2026)
 
 * Run natively on Apple Silicon (arm64; optional universal build)
 * Require macOS 14 or later
