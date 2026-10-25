@@ -1,3 +1,14 @@
+## 2.0.0 (unreleased)
+
+* Run natively on Apple Silicon (arm64; optional universal build)
+* Require macOS 14 or later
+* Replace Carthage + MASShortcut with SwiftPM + KeyboardShortcuts; migrate existing shortcuts
+* Replace the Xcode project and storyboard with a Swift package and SwiftUI preferences
+* Register shortcuts at launch instead of when the preferences table renders
+* Pick up input sources added or removed while Kawa is running
+* Replace deprecated NSUserNotification with UserNotifications
+* Avoid crashes on input sources with missing properties
+
 ## 1.1.0 (10 Nov 2017)
 
 * Remove previous notifications on new one (#17)

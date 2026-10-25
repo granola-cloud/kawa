@@ -4,6 +4,8 @@
 
 A macOS input source switcher with user-defined shortcuts.
 
+Requires macOS 14 or later. Runs natively on Apple Silicon.
+
 ## Demo
 
 [![demo](https://cloud.githubusercontent.com/assets/1013641/9109734/d73505e4-3c72-11e5-9c71-49cdf4a484da.gif)](http://vimeo.com/135542587)
@@ -33,23 +35,21 @@ sources like [CJKV](https://en.wikipedia.org/wiki/CJK_characters).
 
 ## Development
 
-We use [Carthage](https://github.com/Carthage/Carthage) as a dependency manager.
-You can find the latest releases of Carthage [here](https://github.com/Carthage/Carthage/releases),
-or just install it with [Homebrew](http://brew.sh).
+Kawa is a Swift package. Building it requires Xcode (not just the Command Line
+Tools), because the [KeyboardShortcuts](https://github.com/sindresorhus/KeyboardShortcuts)
+dependency uses SwiftUI preview macros that only ship with Xcode.
 
 ```bash
-$ brew update
-$ brew install carthage
+$ git clone https://github.com/hatashiro/kawa.git
+$ cd kawa
+$ ./scripts/build-app.sh              # Apple Silicon only
+$ ./scripts/build-app.sh --universal  # Apple Silicon + Intel
 ```
 
-To clone the Git repository of Kawa and install dependencies:
+The app is written to `build/Kawa.app` and ad-hoc signed. Set `CODESIGN_IDENTITY`
+to sign with a Developer ID instead.
 
-```bash
-$ git clone git@github.com:utatti/kawa.git
-$ carthage bootstrap
-```
-
-After dependency installation, open the project with Xcode.
+Shortcuts saved by Kawa 1.x are migrated automatically on first launch.
 
 ## License
 

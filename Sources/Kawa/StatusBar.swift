@@ -1,25 +1,23 @@
-import AppKit
 import Cocoa
 
-class StatusBar {
-  static let shared: StatusBar = StatusBar()
-
+@MainActor
+final class StatusBar: NSObject {
   let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
-  init() {
-    let button = item.button!
+  override init() {
+    super.init()
 
     let buttonImage = NSImage(named: "StatusItemIcon")
     buttonImage?.isTemplate = true
 
+    guard let button = item.button else { return }
     button.target = self
-    button.action = #selector(StatusBar.action(_:))
+    button.action = #selector(action(_:))
     button.image = buttonImage
-    button.appearsDisabled = false;
     button.toolTip = "Click to open preferences"
   }
 
   @objc func action(_ sender: NSButton) {
-    MainWindowController.shared.showAndActivate(sender)
+    PreferencesWindowController.shared.showAndActivate()
   }
 }
